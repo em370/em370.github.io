@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="//www.parsecdn.com/js/parse-1.6.12.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<!--<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+		<script src="semantic/dist/semantic.min.js"></script>
+		<script src="js/reverse.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/signup.css"/>-->
+		<script>
+		$('document').ready(function()
+{
+	$('#click').click(function()
+	{
+		var str = $('#hexs').val();
+		var sp = str.split("0x");
+		//alert(str);
+		var fix =[];
+		var num = -3;
+		var full ="";
+		for(var i=0; i<sp.length; i++)
+		{
+			if(sp[i].indexOf('>') >-1)
+			{
+				sp.splice(i,1);
+				i--;
+			}
+		}
+		for(var i=0; i<sp.length; i++)
+		{
+			sp[i]=sp[i].replace(/(\r\n|\n|\r)/gm,"");
+			sp[i]=sp[i].replace(" ","");
+			sp[i] = sp[i].replace(/\t+/g, "");
+			
+			var create ="";
+			create = create+sp[i].slice(6,7)+sp[i].slice(7,8);
+			create = create+" "+sp[i].slice(4,5)+sp[i].slice(5,6);
+			create = create+" "+sp[i].slice(2,3)+sp[i].slice(3,4);
+			create = create+" "+sp[i].slice(0,1)+sp[i].slice(1,2);
+			sp[i] = create;
+		}
+		for(var i=0; i<sp.length; i++)
+		{	
+			if(i>1)
+			{
+				full = full+" "+sp[i];
+			}
+			else
+			{
+				full = sp[i];
+			}
+			//num = sp.indexOf(<);
+		}
+		$('#out').val(full);
+		
+	});
+});
+
+		</script>
+		<title>Reverse</title>
+	</head>
+	<body>
+		<div>Enter Hex Here</div></br>
+		<textarea rows="11" cols="90" id="hexs"></textarea>
+		</br>
+
+		</br></br>
+		<div>Output</div></br>
+		<textarea rows="11" cols="90" id="out"></textarea></br>
+		<button id="click">Run</button>		
+	</body>
+</html>
